@@ -1,8 +1,13 @@
+current_path = File.dirname(__FILE__)
+file_path = current_path + "/" + ARGV[0]#"/table"
 
-file = File.open(ARGV[0])
+if File.exist?(file_path)
+  file = File.new(file_path, 'r:UTF-8')
+  table =  file.readlines.map(&:chomp)
+  file.close
+else p "Файл не найден"
+end
 
-table = file.readlines.map(&:chomp)
-file.close
 
 def get_information(line)
   line.split(', ')
